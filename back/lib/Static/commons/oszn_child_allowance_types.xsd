@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:smev="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" xmlns:fss="http://fss.ru/smev-3/oszn_child_allowance_types/1.0.0" targetNamespace="http://fss.ru/smev-3/oszn_child_allowance_types/1.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" schemaLocation="smev-supplementary-commons.xsd"/>
+	<xs:simpleType name="OKTMO8Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{8}"/>
+			<xs:length value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digits-2">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}"/>
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="RecipientType">
+		<xs:sequence>
+			<xs:element name="lastName" type="smev:string-500"/>
+			<xs:element name="firstName" type="smev:string-500"/>
+			<xs:element name="patronymic" type="smev:string-500" minOccurs="0"/>
+			<xs:element name="birthDate" type="xs:date"/>
+			<xs:element name="snils" type="smev:SNILSType"/>
+			<xs:element name="documentTypeCode" type="fss:digits-2"/>
+			<xs:element name="documentSeriesAndNumber" type="smev:string-50"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ChildType">
+		<xs:sequence>
+			<xs:element name="lastName" type="smev:string-500"/>
+			<xs:element name="firstName" type="smev:string-500"/>
+			<xs:element name="patronymic" type="smev:string-500" minOccurs="0"/>
+			<xs:element name="birthDate" type="xs:date"/>
+			<xs:element name="documentSeries" type="smev:string-50"/>
+			<xs:element name="documentNumber" type="smev:string-50"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="OsznChildAllowanceRequestType">
+		<xs:sequence>
+			<xs:element name="senderName" type="smev:string-500"/>
+			<xs:element name="senderRegionCode" type="fss:digits-2"/>
+			<xs:element name="receiverOktmo" type="fss:OKTMO8Type"/>
+			<xs:element name="receiverName" type="smev:string-500"/>
+			<xs:element name="recipient" type="fss:RecipientType"/>
+			<xs:element name="child" type="fss:ChildType"/>
+			<xs:element name="periodStart" type="xs:date"/>
+			<xs:element name="periodEnd" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OsznChildAllowanceResponseType">
+		<xs:sequence>
+			<xs:element name="recipient" type="fss:RecipientType"/>
+			<xs:element name="child" type="fss:ChildType"/>
+			<xs:element name="periodStart" type="xs:date"/>
+			<xs:element name="periodEnd" type="xs:date"/>
+			<xs:element name="received" type="xs:boolean"/>
+			<xs:element name="months" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fss="http://fss.ru/smev-3/oszn_child_allowance_types/1.0.0" xmlns:reg="http://fss.ru/smev-3/oszn_child_allowance_root/1.0.0" targetNamespace="http://fss.ru/smev-3/oszn_child_allowance_root/1.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://fss.ru/smev-3/oszn_child_allowance_types/1.0.0" schemaLocation="commons/oszn_child_allowance_types.xsd"/>
+	<xs:element name="OsznChildAllowanceRequest" type="fss:OsznChildAllowanceRequestType"/>
+	<xs:element name="OsznChildAllowanceResponse" type="fss:OsznChildAllowanceResponseType"/>
+</xs:schema>
